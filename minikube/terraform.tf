@@ -1,56 +1,56 @@
-module "minikube" {
-  source = "github.com/scholzj/terraform-aws-minikube"
+# module "minikube" {
+#   source = "github.com/scholzj/terraform-aws-minikube"
 
-  aws_region        = "us-east-1"
-  cluster_name      = "minikube"
-  aws_instance_type = "t3.medium"
-  ssh_public_key    = "~/.ssh/id_rsa.pub"
-  aws_subnet_id     = element(lookup(module.vpc, "public_subnets", null), 0)
-  hosted_zone         = var.HOSTED_ZONE
-  hosted_zone_private = false
+#   aws_region        = "us-east-1"
+#   cluster_name      = "minikube"
+#   aws_instance_type = "t3.medium"
+#   ssh_public_key    = "~/.ssh/id_rsa.pub"
+#   aws_subnet_id     = element(lookup(module.vpc, "public_subnets", null), 0)
+#   hosted_zone         = var.HOSTED_ZONE
+#   hosted_zone_private = false
 
-  tags = {
-    Application = "Minikube"
-  }
+#   tags = {
+#     Application = "Minikube"
+#   }
 
 
-  addons = [
-    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/storage-class.yaml",
-    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/heapster.yaml",
-    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/dashboard.yaml",
-    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/external-dns.yaml"
-  ]
-}
+#   addons = [
+#     "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/storage-class.yaml",
+#     "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/heapster.yaml",
+#     "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/dashboard.yaml",
+#     "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/external-dns.yaml"
+#   ]
+# }
 
-variable "HOSTED_ZONE" {}
+# variable "HOSTED_ZONE" {}
 
-provider "aws" {
-  region = "us-east-1"
-}
+# provider "aws" {
+#   region = "us-east-1"
+# }
 
-module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+# module "vpc" {
+#   source = "terraform-aws-modules/vpc/aws"
 
-  name = "k8s-vpc"
-  cidr = "10.0.0.0/16"
+#   name = "k8s-vpc"
+#   cidr = "10.0.0.0/16"
 
-  azs             = ["us-east-1a", "us-east-1b"]
-  private_subnets = []
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
+#   azs             = ["us-east-1a", "us-east-1b"]
+#   private_subnets = []
+#   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
 
-  enable_nat_gateway = false
-  enable_vpn_gateway = false
+#   enable_nat_gateway = false
+#   enable_vpn_gateway = false
 
-  tags = {
-    Terraform = "true"
-    Name      = "k8s-vpc"
-  }
-}
+#   tags = {
+#     Terraform = "true"
+#     Name      = "k8s-vpc"
+#   }
+# }
 
-output "MINIKUBE_SERVER" {
-  value = "ssh centos@${module.minikube.public_ip}"
-}
+# output "MINIKUBE_SERVER" {
+#   value = "ssh centos@${module.minikube.public_ip}"
+# }
 
-output "KUBE_CONFIG" {
-  value = "scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig ~/.kube/config"
-}
+# output "KUBE_CONFIG" {
+#   value = "scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig ~/.kube/config"
+# }
