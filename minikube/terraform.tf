@@ -12,6 +12,7 @@ module "minikube" {
   tags = {
     Application = "Minikube"
   }
+  
 
   addons = [
     "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/storage-class.yaml",
