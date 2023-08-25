@@ -5,14 +5,14 @@ module "minikube" {
   cluster_name      = "minikube"
   aws_instance_type = "t3.medium"
   ssh_public_key    = "~/.ssh/id_rsa.pub"
-  aws_subnet_id     = module.vpc.public_subnets[0]
+  aws_subnet_id     = element(lookup(module.vpc, "public_subnets", null), 0)
   hosted_zone         = var.HOSTED_ZONE
   hosted_zone_private = false
 
   tags = {
     Application = "Minikube"
   }
-  
+
 
   addons = [
     "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/storage-class.yaml",
@@ -34,8 +34,9 @@ module "vpc" {
   name = "k8s-vpc"
   cidr = "10.0.0.0/16"
 
-  azs            = ["us-east-1a"]
-  public_subnets = ["10.0.101.0/24"]
+  azs             = ["us-east-1a", "us-east-1b"]
+  private_subnets = []
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
 
   enable_nat_gateway = false
   enable_vpn_gateway = false
