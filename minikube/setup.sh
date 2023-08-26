@@ -5,7 +5,7 @@ export TF_VAR_HOSTED_ZONE=${hname}
 
 if [ ! -f "~/.ssh/id_rsa.pub" ]; then
   echo -e " Ensure you generate the keyPair usign \e[31m ssh-keygen  \e[0m command and then rerun the setup"
-  exit
+  exit 1
 fi
 
 echo "Ensure you open the following URL and subscribe. Wait for Subscription to Complete and Press Enter to Continue"
