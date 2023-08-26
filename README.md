@@ -45,6 +45,8 @@ Syntax :  kubectl action resources
 * kubectl api-resources 
 * kubectl --help 
 * kubectl describe resource resourceName
+* kubectl logs -f podName                   [ when you have a single container in pod ] 
+* kubectl logs -f podName -c containerName  [ when you have multiple containers in a pod ] 
 ```
 
 
