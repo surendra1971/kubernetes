@@ -9,6 +9,4 @@ spec:
     ports:
     - containerPort: 80
   - name: httpd
-    image: httpd:latest
-    ports:
-    - containerPort: 81
+    image: httpd
