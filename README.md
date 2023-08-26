@@ -76,3 +76,17 @@ It helps avoid naming conflicts and enhances clarity in a shared environment.
     3) kube-system    [ THis is for the objects created by the Kubernetes System. This is internal to kubernetes]
 
 ```
+
+
+### How can we create kubernetes resources using manifest files ???
+
+```
+    $ kubectl apply -f nameOfTheFile.yml       
+            [ apply is going to create resource is not available or updates the values of the resources if the resource already exits]
+
+    $ kubectl create -f nameOfTheFile.yml 
+             [ create is going to create resource ]
+    
+    $ kubectl delete -f nameOfTheFile.yml 
+             [delete is going to delete all the kubernetes resources created by this manifest]
+```
