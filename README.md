@@ -44,6 +44,7 @@ Syntax :  kubectl action resources
 * kubectl api-versions
 * kubectl api-resources 
 * kubectl --help 
+* kubectl describe resource resourceName
 ```
 
 
