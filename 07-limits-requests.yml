@@ -6,6 +6,11 @@
 
 # Limits and requests are at the Container Level of the Pod. Not at POD Level.
 
+# 20% of the resources will be consumed by OS [ Internal Functions ]
+
+# Ensure pod 100% should be less than 80% of the node size.
+# If pod is not able to find the node as per it's limits and requests, POD will stay in the pending state.
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -21,3 +26,20 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+spec:
+  containers:
+  - name: app
+    image: nginx:latest
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "4"
+      limits:
+        memory: "128Mi"
+        cpu: "8"
