@@ -1,11 +1,15 @@
-# multi-container pod 
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx                     
-spec:                              
-  containers:                        
-  - name: nginx                   
-    image: nginx:1.14.2
-  - name: alpine                  
-    image: httpd
+  name: pod-with-multiple-containers
+spec:
+  containers:
+  - name: 1st
+    image: nginx
+  - name: 2nd
+    image: debian
+
+    # command: ["/bin/sh", "-c"]
+    # args:
+    #   - while true; do
+    #       date
