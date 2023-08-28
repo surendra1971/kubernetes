@@ -1,6 +1,9 @@
 # A Configmap is holder of environment variables which can be injected to any of the kubernetes resources.
 # Usually values that are common across the applications will be placed in a configMap and will be used inside the pods.
-#  To use configMap, we would use envFrom.
+# To use configMap, we would use envFrom.
+# ConfigMap's are only used to handle non-sensiteve values only.
+# If you want to inject userName , Password, Token, you need to use another type of resource called as secrets.
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
