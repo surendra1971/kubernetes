@@ -8,8 +8,7 @@ spec:
     image: nginx
   - name: 2nd
     image: debian
-
-    # command: ["/bin/sh", "-c"]
-    # args:
-    #   - while true; do
-    #       date
+    command: ["/bin/sh", "-c"]
+    args:
+      - while true; do
+          date
