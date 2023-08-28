@@ -93,3 +93,28 @@ It helps avoid naming conflicts and enhances clarity in a shared environment.
     $ kubectl delete -f nameOfTheFile.yml 
              [delete is going to delete all the kubernetes resources created by this manifest]
 ```
+
+
+
+
+### How can I ensure that a pod which is deleted should be coming up automatically ?
+### How can I ensure that a specific number of pods of an instance should be running ?
+### How can I upgrade from x to y version of pods without any interruption ?
+
+
+ALL THE ABOVE VAB BE FULFILLED BY USING SETS!!!!
+
+```
+In Kubernetes, we don't run any of resources diectly as POD's as they are not manture enough enough to be maintained.
+Instead, we run SET's and set's will take care of all the above 3 points.
+```
+
+### Sets In Kubernetes : 
+
+```
+    1) Replicat Set 
+    2) Deployment Set
+    3) Daemon Set 
+    4) Stateful Set
+
+```
