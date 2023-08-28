@@ -24,7 +24,7 @@ metadata:
 spec:
   containers:
   - name: centos
-    image: centos:7
+    image: centos:8
     command: ["sleep" , "1000"]
     envFrom:
       - configMapRef: 
