@@ -1,0 +1,4 @@
+alias kc="kubectl"
+alias kaf="kubectl apply -f"
+alias kgp="kubectl get pods"
+alias kdf="kubectl delete -f"
