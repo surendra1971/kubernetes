@@ -8,6 +8,3 @@ spec:
     image: nginx
   - name: 2nd
     image: debian
-  - args:
-      - sleep 
-      - 1000 
