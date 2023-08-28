@@ -16,4 +16,10 @@ spec:
       value: mongo.cc.com 
     - name: APP
       value: ecomm 
+
+
+# What if you have 10 environment variables ?
+# What if you have 10 environment variables and all of them are common to all of your 10 pods ?
+# * Do you delcare them 10 times ? configMap 
+
     
