@@ -1,6 +1,6 @@
 terraform {
   backend "local" {
-    path = "/opt/mikikube.tfstate"
+    path = "/opt/mikikube.tfstate-file"
   }
 }
 
