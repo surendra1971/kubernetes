@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:                               # Labels assigned at set level
+    app: guestbook
+    tier: frontend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:                          # Labels assigned at pod level
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:mainline-alpine-slim
+        ports:
+        - containerPort: 80
+
+--- 
+# If you don't mention the type of service, by default it will be ClusterIP Service [ which is accessible only in the cluster ]
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  selector:
+    tier: frontend 
+  ports:
+    - protocol: TCP
+      port: 80                         # Port number that your service has to listen and this is the port you will access
+      targetPort: 80                   # TargetPort forwards the requests to the backend pod
+
+
+# Main Purpose Of replica-set is just to ensure the mentioned number of pods are running or not.
+# Replica Set don't have the ability of versioning or updaging the version from x to y.
+
+# If you want your resource to have the version upgrade or update ability, then REPLICA-SET is not the choice.
+# In that case, we need to use the DEPLOYMENT-SET 
+
+
+# If you want to upgrade versions from v1 to v2 of your applicaion and if your application is running on REPLICA-SET's, then you need to delete the
+# existing replica-set and have to re-create and this involves significant downtime.
